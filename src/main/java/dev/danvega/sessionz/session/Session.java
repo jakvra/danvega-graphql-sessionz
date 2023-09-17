@@ -1,11 +1,24 @@
 package dev.danvega.sessionz.session;
 
 import dev.danvega.sessionz.event.Event;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.util.List;
 import java.util.Set;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 public final class Session {
 
@@ -25,75 +38,24 @@ public final class Session {
         @ManyToOne
         private Event event;
 
-        public Session() {
-        }
+    public Session(Integer id, String title, String description, Level level, Set<Tag> tags, Event event) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.level = level;
+        this.tags = tags;
+        this.event = event;
+    }
 
-        public Session(Integer id, String title, String description, Level level, Set<Tag> tags, Event event) {
-                this.id = id;
-                this.title = title;
-                this.description = description;
-                this.level = level;
-                this.tags = tags;
-                this.event = event;
-        }
-
-        public Integer getId() {
-                return id;
-        }
-
-        public void setId(Integer id) {
-                this.id = id;
-        }
-
-        public String getTitle() {
-                return title;
-        }
-
-        public void setTitle(String title) {
-                this.title = title;
-        }
-
-        public String getDescription() {
-                return description;
-        }
-
-        public void setDescription(String description) {
-                this.description = description;
-        }
-
-        public Level getLevel() {
-                return level;
-        }
-
-        public void setLevel(Level level) {
-                this.level = level;
-        }
-
-        public Set<Tag> getTags() {
-                return tags;
-        }
-
-        public void setTags(Set<Tag> tags) {
-                this.tags = tags;
-        }
-
-        public Event getEvent() {
-                return event;
-        }
-
-        public void setEvent(Event event) {
-                this.event = event;
-        }
-
-        @Override
-        public String toString() {
-                return "Session{" +
-                        "id=" + id +
-                        ", title='" + title + '\'' +
-                        ", description='" + description + '\'' +
-                        ", level=" + level +
-                        ", tags=" + tags +
-                        ", event=" + event +
-                        '}';
-        }
+    @Override
+    public String toString() {
+        return "Session{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", level=" + level +
+                ", tags=" + tags +
+                ", event=" + event +
+                '}';
+    }
 }

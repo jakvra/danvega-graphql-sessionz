@@ -2,6 +2,7 @@ package dev.danvega.sessionz.event;
 
 import dev.danvega.sessionz.session.Session;
 import dev.danvega.sessionz.session.SessionRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Limit;
 import org.springframework.data.domain.ScrollPosition;
 import org.springframework.data.domain.Sort;
@@ -16,15 +17,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
+@RequiredArgsConstructor
 public class EventController {
 
     private final EventRepository eventRepository;
     private final SessionRepository sessionRepository;
-
-    public EventController(EventRepository eventRepository, SessionRepository sessionRepository) {
-        this.eventRepository = eventRepository;
-        this.sessionRepository = sessionRepository;
-    }
 
     @QueryMapping
     List<Event> events() {

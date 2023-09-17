@@ -21,6 +21,7 @@ type Event {
     location: String
     website: Url
     sessions(first: Int,last: Int,before: String,after: String): SessionConnection
+#    sessions(first: Int,last: Int,before: String,after: String): Session
 }
 
 type Session {
